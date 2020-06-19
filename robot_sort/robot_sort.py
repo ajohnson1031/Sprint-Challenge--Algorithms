@@ -96,10 +96,36 @@ class SortingRobot:
         """
         Sort the robot's list.
         """
-        # Fill this out
-        pass
-
-
+        #Go all the way to the right, comparing values 
+        #Go all the way to the left, comparing values
+        '''
+        Robot start at position 0 of the list; Robot holds None value at start from the self.item in class definition property.
+        First step we will basically bubble the smallest element to the beginning of list first. 
+        While we can move to right side of elements:
+            we make a swap 
+            While we can still move right (in order to find smallest element):
+                We move right then
+                if element held by robot is greater than element at current index we are at:
+                    we make a swap
+            While neither item robot is holding nor item at each index in list we land on is not None (so we travel back to None which we left as the first element in the list when we picked up the first index during that compare) :
+                We move left
+            then we make a swap (most likely we have either an item held by robot or item at current index in list has None)
+            finally we move right again and we repeat till we get to end of list
+        '''
+        
+        while self.can_move_right():
+            self.swap_item()
+            while self.can_move_right():
+                self.move_right()
+                if self.compare_item() == 1:
+                    self.swap_item()
+        #     
+            while self.compare_item() is not None:
+                self.move_left()
+            
+            self.swap_item()
+            self.move_right()
+               
 if __name__ == "__main__":
     # Test our your implementation from the command line
     # with `python robot_sort.py`
